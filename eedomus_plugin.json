@@ -1,0 +1,745 @@
+{
+  "plugin_id": "neato",
+  "name_fr": "Robots Aspirateurs Neato",
+  "name_en": "Neato Vacuum Robots",
+  "icon": "neatoLogo.png",
+  "version": "0.2.7",
+  "creation_date": "2020-11-07",
+  "modification_date": "2021-11-11",
+  "author": "job-so",
+  "description_fr": "Contrôlez votre aspirateur <a target='_blank' href='https://www.neatorobotics.com'>Neato</a>",
+  "description_en": "<a target='_blank' href='https://www.neatorobotics.com'>Neato</a> Vaccum Control",
+  "description_es": "",
+  "description_it": "",
+  "description_de": "",
+  "forum_link": "https://github.com/job-so/eedomus-neato/issues",
+  "parameters": [
+    {
+      "parameter": "selectRobot",
+      "description": "",
+      "xtype": "displayfield",
+      "field": "style: 'padding: 3px;', value: 'Cliquez <a target=\\'_blank\\' href=\\'https://secure.eedomus.com/script_proxy/?exec=neato.php&command=listRobots&lan_only=1\\'>ici pour sélectionner l\\'apirateur</a>'"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "neato.php"
+    }
+  ],
+  "devices": [
+    {
+      "device_id": "Neato",
+      "module_id": "41",
+      "type": "http",
+      "name_fr": "plugin.name",
+      "icon": "neatoLogo.png",
+      "utilisation_id": "43",
+      "parameters": {
+        "value_type": "list",
+        "ignore_errors": 3,
+        "RAW_URL": "http://localhost/script/?exec=neato.php&command=getRobotState",
+        "RAW_XPATH": "/root/status",
+        "POLLING": "1"
+      },
+      "values": [
+        {
+          "value": "startCleaning",
+          "description": "Démarrer le nettoyage",
+          "description_fr": "Démarrer le nettoyage",
+          "description_en": "Start Cleaning",
+          "icon": "neatoStartCleaning.png",
+          "http_params": "&command=startCleaning",
+          "http_url": "http://localhost/script/?exec=neato.php",
+          "http_type": "GET"
+        },
+        {
+          "value": "pauseCleaning",
+          "description": "Suspendre le nettoyage",
+          "description_fr": "Suspendre le nettoyage",
+          "description_en": "Pause Cleaning",
+          "icon": "neatoPauseCleaning.png",
+          "http_params": "&command=pauseCleaning",
+          "http_url": "http://localhost/script/?exec=neato.php",
+          "http_type": "GET"
+        },
+        {
+          "value": "resumeCleaning",
+          "description": "Reprendre le nettoyage",
+          "description_fr": "Reprendre le nettoyage",
+          "description_en": "Resume Cleaning",
+          "icon": "neatoResumeCleaning.png",
+          "http_params": "&command=resumeCleaning",
+          "http_url": "http://localhost/script/?exec=neato.php",
+          "http_type": "GET"
+        },
+        {
+          "value": "stopCleaning",
+          "description": "Arrêter le nettoyage",
+          "description_fr": "Arrêter le nettoyage",
+          "description_en": "Stop Cleaning",
+          "icon": "neatoStopCleaning.png",
+          "http_params": "&command=stopCleaning",
+          "http_url": "http://localhost/script/?exec=neato.php",
+          "http_type": "GET"
+        },
+        {
+          "value": "sendToBase",
+          "description": "Retour au socle",
+          "description_fr": "Retour au socle",
+          "description_en": "Send to Dock",
+          "icon": "neatoSendToBase.png",
+          "http_params": "&command=sendToBase",
+          "http_url": "http://localhost/script/?exec=neato.php",
+          "http_type": "GET"
+        },
+        {
+          "value": "ko",
+          "description": "Impossible de communiquer avec le robot",
+          "description_fr": "Impossible de communiquer avec le robot",
+          "description_en": "No communication with robot",
+          "icon": "neatoError.png",
+          "hidden": 1
+        },
+        {
+          "value": "docked",
+          "description": "Sur son socle",
+          "description_fr": "Sur son socle",
+          "description_en": "docked",
+          "icon": "neatoDocked.png",
+          "hidden": 1
+        },
+        {
+          "value": "charging",
+          "description": "Chargement...",
+          "description_fr": "Chargement...",
+          "description_en": "charging",
+          "icon": "neatoCharging.png",
+          "hidden": 1
+        },
+        {
+          "value": "stopped",
+          "description": "A l'arrêt",
+          "description_fr": "A l'arrêt",
+          "description_en": "stopped",
+          "icon": "neatoStopped.png",
+          "hidden": 1
+        },
+        {
+          "value": "suspended",
+          "description": "en pause",
+          "description_fr": "en pause",
+          "description_en": "suspended",
+          "icon": "neatoStopped.png",
+          "hidden": 1
+        },
+        {
+          "value": "cleaning",
+          "description": "Nettoyage en cours",
+          "description_fr": "Nettoyage en cours",
+          "description_en": "cleaning",
+          "icon": "neatoCleaning.png",
+          "hidden": 1
+        },
+        {
+          "value": "ui_error_battery_battundervoltlithiumsafety",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_critical",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_invalidsensor",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_lithiumadapterfailure",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_mismatch",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_nothermistor",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_overtemp",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_overvolt",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_undercurrent",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_undertemp",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_undervolt",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_battery_unplugged",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Remplacer la batterie",
+          "description_fr": "charging",
+          "description_en": "Replace battery"
+        },
+        {
+          "value": "ui_error_brush_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Brosse bloquée",
+          "description_fr": "Brosse bloquée",
+
+          "description_en": "Brush stuck"
+        },
+        {
+          "value": "ui_error_brush_overloaded",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Nettoyez la brosse",
+          "description_fr": "Nettoyez la brosse",
+          "description_en": "Clean the brush"
+        },
+        {
+          "value": "ui_error_brush_overloaded",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Nettoyez la brosse",
+          "description_fr": "Nettoyez la brosse",
+          "description_en": "Clean the brush"
+        },
+        {
+          "value": "ui_error_bumper_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Pare-chocs bloqué",
+          "description_fr": "Pare-chocs bloqué",
+          "description_en": "Bumper stuck"
+        },
+        {
+          "value": "ui_error_check_battery_switch",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Verifiez la batterie",
+          "description_fr": "Vérfieir la batterie",
+          "description_en": "Check battery"
+        },
+        {
+          "value": "ui_error_corrupt_scb",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Carte controlleur HS",
+          "description_fr": "Carte controlleur HS",
+          "description_en": "Call customer service corrupt board"
+        },
+        {
+          "value": "ui_error_deck_debris",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Débris",
+          "description_fr": "Débris",
+          "description_en": "Deck debris"
+        },
+        {
+          "value": "ui_error_dflt_app",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "voir application Neato",
+          "description_fr": "voir application Neato",
+          "description_en": "Check Neato app"
+        },
+        {
+          "value": "ui_error_disconnect_chrg_cable",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Cable de charge déconnecté",
+          "description_fr": "Cable de charge déconnecté",
+          "description_en": "Disconnected charge cable"
+        },
+        {
+          "value": "ui_error_disconnect_usb_cable",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Cable USB déconnecté",
+          "description_fr": "Cable USB déconnecté",
+          "description_en": "Disconnected USB cable"
+        },
+        {
+          "value": "ui_error_dust_bin_missing",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Bac à poussière manquant",
+          "description_fr": "Bac à poussière manquant",
+          "description_en": "Dust bin missing"
+        },
+        {
+          "value": "ui_error_dust_bin_full",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Dust bin full"
+        },
+        {
+          "value": "ui_error_dust_bin_emptied",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Dust bin emptied"
+        },
+        {
+          "value": "ui_error_hardware_failure",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Hardware failure"
+        },
+        {
+          "value": "ui_error_ldrop_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_lds_jammed",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_lds_bad_packets",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Check Neato app"
+        },
+        {
+          "value": "ui_error_lds_disconnected",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Check Neato app"
+        },
+        {
+          "value": "ui_error_lds_missed_packets",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Check Neato app"
+        },
+        {
+          "value": "ui_error_lwheel_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_backdrop_frontbump",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_backdrop_leftbump",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_backdrop_wheelextended",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_noprogress",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_origin_unclean",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_pathproblems",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Cannot return to base"
+        },
+        {
+          "value": "ui_error_navigation_pinkycommsfail",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_falling",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_noexitstogo",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_nomotioncommands",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_rightdrop_leftbump",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_navigation_undockingfailed",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_picked_up",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Picked up"
+        },
+        {
+          "value": "ui_error_qa_fail",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Check Neato app"
+        },
+        {
+          "value": "ui_error_rdrop_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_reconnect_failed",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Reconnect failed"
+        },
+        {
+          "value": "ui_error_rwheel_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Stuck!"
+        },
+        {
+          "value": "ui_error_unable_to_return_to_base",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Unable to return to base"
+        },
+        {
+          "value": "ui_error_unable_to_see",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clean vacuum sensors"
+        },
+        {
+          "value": "ui_error_vacuum_slip",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_vacuum_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "ui_error_warning",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Error check app"
+        },
+        {
+          "value": "batt_base_connect_fail",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Battery failed to connect to base"
+        },
+        {
+          "value": "batt_base_no_power",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Battery base has no power"
+        },
+        {
+          "value": "batt_low",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Battery low"
+        },
+        {
+          "value": "batt_on_base",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Battery on base"
+        },
+        {
+          "value": "clean_tilt_on_start",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clean the tilt on start"
+        },
+        {
+          "value": "dustbin_full",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Dust bin full"
+        },
+        {
+          "value": "dustbin_missing",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Dust bin missing"
+        },
+        {
+          "value": "gen_picked_up",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Picked up"
+        },
+        {
+          "value": "hw_fail",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Hardware failure"
+        },
+        {
+          "value": "hw_tof_sensor_sensor",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Hardware sensor disconnected"
+        },
+        {
+          "value": "lds_bad_packets",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Bad packets"
+        },
+        {
+          "value": "lds_deck_debris",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Debris on deck"
+        },
+        {
+          "value": "lds_disconnected",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Disconnected"
+        },
+        {
+          "value": "lds_jammed",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Jammed"
+        },
+        {
+          "value": "lds_missed_packets",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Missed packets"
+        },
+        {
+          "value": "maint_brush_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Brush stuck"
+        },
+        {
+          "value": "maint_brush_overload",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Brush overloaded"
+        },
+        {
+          "value": "maint_bumper_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Bumper stuck"
+        },
+        {
+          "value": "maint_customer_support_qa",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Contact customer support"
+        },
+        {
+          "value": "maint_vacuum_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Vacuum is stuck"
+        },
+        {
+          "value": "maint_vacuum_slip",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Vacuum is stuck"
+        },
+        {
+          "value": "maint_left_drop_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Vacuum is stuck"
+        },
+        {
+          "value": "maint_left_wheel_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Vacuum is stuck"
+        },
+        {
+          "value": "maint_right_drop_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Vacuum is stuck"
+        },
+        {
+          "value": "maint_right_wheel_stuck",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Vacuum is stuck"
+        },
+        {
+          "value": "not_on_charge_base",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Not on the charge base"
+        },
+        {
+          "value": "nav_robot_falling",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_no_path",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_path_problem",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_backdrop_frontbump",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_backdrop_leftbump",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_backdrop_wheelextended",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_mag_sensor",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_no_exit",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_no_movement",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_rightdrop_leftbump",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        },
+        {
+          "value": "nav_undocking_failed",
+          "icon": "neatoError.png",
+          "hidden": 1,
+          "description": "Clear my path"
+        }
+      ]
+    }
+  ]
+}
